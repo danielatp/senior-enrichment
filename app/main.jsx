@@ -1,16 +1,17 @@
 'use strict';
 import React from 'react';
-import {render} from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import store from './store';
-import Root from './components/Root';
 import Home from './components/Home';
-import NavBar from './components/NavBar';
 
-render (
+render(
   <Provider store={store}>
-    <NavBar />
+    <BrowserRouter>
+      <Home />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
-)
+);

@@ -1,28 +1,23 @@
 import React, {Component} from 'react';
-import Home from './Home';
+import { Switch, Route, Link } from 'react-router-dom';
+
+import AllStudents from './AllStudents';
 
 export default class NavBar extends Component{
-  constructor(){
-    super()
-  }
 
   render(){
     return (
       <div>
         <nav>
-          <div>
-            <p>home</p>
-          </div>
-          <div>
-            <p>campuses</p>
-          </div>
-          <div>
-            <p>students</p>
-          </div>
+          <div className="home"><Link to="/"> HOME </Link></div>
+          <div><Link to="/students"> Students </Link></div>
+          <div><Link to="/campuses"> Campuses </Link></div>
         </nav>
-        <Home />
+
       </div>
     )
   }
 
 }
+
+

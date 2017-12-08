@@ -4,10 +4,61 @@
 }
 
 body {
-  background-color:black;
-  color: grey;
+  background-color:rgb(13, 6, 36);
+  color: white;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
 }
 
-navbar {
+nav {
+  font-size:1.5em;
+  width:98%;
+  position: fixed;
+    top:0;
+  border-bottom: 1px solid rgba(123, 123, 123, 0.5);
+  display: flex;
+  flex-direction: row;
+  padding:0 1%;
+}
 
+nav>div{
+  color:white;
+  /* border: 1px solid red; */
+  padding: 5px;
+  padding-left: 10px;
+}
+
+nav a{
+  color:white;
+  text-decoration: none;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.home{
+  flex-grow: 1;
+}
+
+.main-view{
+  /* border:1px solid salmon; */
+  padding:60px 15px 0 15px;
+}
+
+ul{
+  margin-top: 2%;
+}
+
+ul li{
+  list-style: none;
+  border-bottom: 1px solid grey;
+  margin: 5px 0;
+  padding: 0 2%;
+}
+
+.delete-btn{
+  background-color:rgb(92, 10, 10);
+  padding:2px 15px;
+  /* margin-left: 20px;*/
+  float: right;
+  color: white;
+  margin: 3px 0;
 }
