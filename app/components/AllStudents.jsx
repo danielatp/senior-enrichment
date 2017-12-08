@@ -10,15 +10,15 @@ class AllStudents extends Component {
   }
 
   render(){
-    console.log('PROPS: ', this.props)
     return (
       <div>
         <h1>Students</h1>
-        <ul>
+        <button>Add Student</button>
+        <ul className="students-list">
           {this.props.students.map( student => {return (
                 <li key={student.id}>
                   {student.firstName}
-                  <button className="delete-btn">X</button>
+                  <button className="delete-student-btn">X</button>
                 </li>
               );
             })}
@@ -29,7 +29,7 @@ class AllStudents extends Component {
 }
 
 
-function mapStateToProps (storeState){
+function mapStateToProps(storeState){
   return {
     students: storeState.students
   };

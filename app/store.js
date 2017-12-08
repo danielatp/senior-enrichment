@@ -3,10 +3,12 @@ import loggingMiddleware from 'redux-logger'; // https://github.com/evgenyrodion
 import thunkMiddleware from 'redux-thunk'; // https://github.com/gaearon/redux-thunk
 
 import studentsReducer from './reducers/studentsReducer';
+import campusesReducer from './reducers/campusesReducer';
 
 
 const mainReducer = combineReducers({
   students: studentsReducer,
+  campuses: campusesReducer
 });
 
 const store = createStore(mainReducer, applyMiddleware(thunkMiddleware, loggingMiddleware));

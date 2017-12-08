@@ -43,22 +43,46 @@ nav a{
   padding:60px 15px 0 15px;
 }
 
-ul{
+.students-list{
   margin-top: 2%;
 }
 
-ul li{
+.students-list li{
   list-style: none;
   border-bottom: 1px solid grey;
   margin: 5px 0;
   padding: 0 2%;
 }
 
-.delete-btn{
+.delete-student-btn{
   background-color:rgb(92, 10, 10);
   padding:2px 15px;
   /* margin-left: 20px;*/
   float: right;
   color: white;
   margin: 3px 0;
+}
+
+.campuses-main{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0 10%;
+}
+
+.campuses-list{
+  /* border: 1px solid purple; */
+  min-width: 250px;
+  margin: 2% 0;
+  height:250px;
+  flex: 0 0 47%;
+}
+
+.delete-campus-btn{
+  width: 98%;
+  background-color: rgb(92, 10, 10);
+  padding: 2px;
+  color:white;
+  position: relative;
+    top: 190px;
 }
