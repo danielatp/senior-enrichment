@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
-import AllStudents from './AllStudents';
 
 export default class NavBar extends Component{
 
@@ -13,7 +12,6 @@ export default class NavBar extends Component{
           <div><Link to="/students"> Students </Link></div>
           <div><Link to="/campuses"> Campuses </Link></div>
         </nav>
-
       </div>
     )
   }

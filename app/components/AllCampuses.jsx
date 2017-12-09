@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchCampuses } from '../reducers/campusesReducer';
 
 class AllCampuses extends Component {
-
-  componentDidMount(){
-    this.props.fetchCampuses();
-  }
 
   render(){
     return (
@@ -38,14 +33,6 @@ function mapStateToProps(storeState){
   };
 }
 
-function mapDispatchToProps(dispatch){
-  return {
-    fetchCampuses: function(){
-      dispatch(fetchCampuses());
-    }
-  };
-}
-
-const AllCampusesContainer = connect(mapStateToProps, mapDispatchToProps)(AllCampuses);
+const AllCampusesContainer = connect(mapStateToProps)(AllCampuses);
 
 export default AllCampusesContainer;
