@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const GOT_STUDENTS = 'GOT_STUDENTS';
 const DELETE_STUDENT = 'DELETE_STUDENT';
-// const GOT_CURRENT_STUDENT = 'GOT_CURRENT_STUDENT';
+// const ADD_STUDENT = 'ADD_STUDENT';
 
 //ACTIONS
 export const gotStudents = (students) => {
@@ -19,15 +19,16 @@ export const deleteStudent = (id) => {
   };
 };
 
-// export const gotCurrentStudent = (currentStudent) => {
+// export const addStudent = (studentData) => {
 //   return {
-//     type: GOT_CURRENT_STUDENT,
-//     currentStudent,
+//     type: ADD_STUDENT,
+//     ,
 //   };
 // };
 
 //THUNKS
 export const fetchStudents = () =>  {
+  console.log('FETCH STUDENTS')
   return function(dispatch){
     axios.get('/api/students')
       .then( response => response.data)
@@ -43,9 +44,9 @@ export const fetchStudents = () =>  {
 export const removeStudent = (students, id) => {
   return function(dispatch){
     axios.delete(`/api/students/${id}`)
-      .then( () => {
-        dispatch(gotStudents(students))
-        dispatch(deleteStudent(id));
+    .then( () => {
+      dispatch(gotStudents(students));
+      dispatch(deleteStudent(id));
       })
       .catch(err => {
         console.log('FRIENDLY ERROR: ', err );
@@ -53,17 +54,23 @@ export const removeStudent = (students, id) => {
   }
 };
 
-// export const fetchCurrentStudent = (id) => {
+// export const addStudent = (student) => {
+//   console.log('ADD STUDENT', student)
 //   return function(dispatch){
-//     axios.get(`/api/students/${id}`)
-//       .then( () => {
-//         dispatch(gotCurrentStudent(id));
+//     axios.post('/api/students', student)
+//       .then(response => {
+//         console.log('response', response)
+//         response.data})
+//       .then(() => {
+//         console.log('axios.post coolllssss')
+//         dispatch(fetchStudents())
 //       })
 //       .catch(err => {
 //         console.log('FRIENDLY ERROR: ', err );
 //       });
-//   };
-// };
+//   }
+// }
+
 
 //REDUCER
 const studentsReducer = function(state = [], action){
@@ -77,8 +84,10 @@ const studentsReducer = function(state = [], action){
         return student.id !== Number(action.id);
       });
 
-    // case GOT_CURRENT_STUDENT:
-    //   return action.currentStudent;
+    // case ADD_STUDENT:
+    //   // return state.filter(student => {
+    //   //   return student.id !== Number(action.id);
+    //   // });
 
     default:
       return state;

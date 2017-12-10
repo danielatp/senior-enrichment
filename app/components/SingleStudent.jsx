@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { fetchCurrentStudent } from '../store';
+import store, { fetchCurrentStudent, removeStudent } from '../store';
 
 class SingleStudent extends Component{
 
@@ -16,10 +17,19 @@ class SingleStudent extends Component{
 
     return (
       <div>
-        <h1>{`${student.firstName} ${student.lastName}`}</h1><br/>
-        <h3>E-mail</h3><h4>{student.email}</h4><br/>
-        <h3>Campus</h3><h4>el nombre el campussss</h4><br/>
-        <h3>GPA</h3><h4>{student.gpa}</h4><br/>
+        <h1>{`${student.firstName} ${student.lastName}`}</h1>
+        <div>
+          <button className="delete-student-btn">Edit Student</button>
+          <Link to="/students">
+          <button className="delete-student-btn" onClick={(event) => this.props.handleDelete(this.props.students, event)}>Delete Student</button>
+          </Link>
+        </div>
+        <h3>E-mail</h3><h4>{student.email}</h4>
+        <br/>
+        <h3>Campus</h3><h4>el nombre el campussss</h4>
+        <br/>
+        <h3>GPA</h3><h4>{student.gpa}</h4>
+        <br/>
       </div>
     );
   }
@@ -35,8 +45,14 @@ function mapStateToProps(storeState){
 function mapDispatchToProps(dispatch){
   return {
     fetchCurrentStudent: function(id){
-      dispatch(fetchCurrentStudent(id))
+      dispatch(fetchCurrentStudent(id));
+    },
+
+    handleDelete: function(students, event){
+      const id = this.currentStudent.id;
+      dispatch(removeStudent(students, id));
     }
+
   };
 }
 

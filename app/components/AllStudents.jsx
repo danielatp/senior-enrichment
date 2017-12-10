@@ -7,11 +7,10 @@ import { removeStudent } from '../store';
 class AllStudents extends Component {
 
   render(){
-    console.log(this.props);
     return (
       <div>
         <h1>Students</h1>
-        <button>Add Student</button>
+        <Link to="/students/student-form">Add Student</Link>
         <ul className="students-list">
           {this.props.students.map( student => {return (
                   <li key={student.id} id={student.id}>
@@ -39,9 +38,7 @@ function mapStateToProps(storeState){
 
 function mapDispatchToProps(dispatch){
   return {
-    // fetchStudents: function(){
-    //   dispatch(fetchStudents());
-    // },
+
     handleDelete: function(students, event){
       const studentId = event.target.parentNode.id;
       dispatch(removeStudent(students, studentId));

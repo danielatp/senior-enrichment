@@ -6,6 +6,7 @@ import NavBar from './NavBar';
 import AllStudents from './AllStudents';
 import AllCampuses from './AllCampuses';
 import SingleStudent from './SingleStudent';
+import StudentForm from './StudentForm';
 import { fetchStudents, fetchCampuses } from '../store';
 
 
@@ -23,6 +24,7 @@ class Home extends Component{
         <div className="main-view">
           <Switch>
             <Route exact path="/students" component={AllStudents} />
+            <Route path="/students/student-form" component={StudentForm} />
             <Route exact path="/campuses" component={AllCampuses} />
             <Route path="/students/:studentsId" component={SingleStudent} />
         </Switch>
@@ -36,7 +38,6 @@ class Home extends Component{
 function mapDispatchToProps(dispatch){
   return {
     fetchStudents: () => dispatch(fetchStudents()),
-
     fetchCampuses: () => dispatch(fetchCampuses()),
   };
 }
