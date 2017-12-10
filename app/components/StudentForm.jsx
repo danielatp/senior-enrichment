@@ -57,7 +57,6 @@ class StudentForm extends Component{
 
 
   handleSubmit(event){
-    console.log('HANDLE SUBMIT')
     event.preventDefault()
     const studentData = {
       firstName: this.state.firstName,
@@ -66,12 +65,7 @@ class StudentForm extends Component{
       gpa: this.state.gpa,
       campus: this.state.campusName
     }
-
-      // axios.post('/api/students', studentData)
-      //   .then(() => fetchStudents() )
-
-      this.props.addStudent(studentData)
-
+    this.props.addStudent(studentData)
   }
 
 
@@ -123,7 +117,6 @@ class StudentForm extends Component{
           </select>
 
             <button type="submit" className="form-input" >add</button>
-
 
         </form>
       </div>

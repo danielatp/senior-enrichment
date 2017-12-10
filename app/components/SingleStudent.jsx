@@ -9,11 +9,12 @@ class SingleStudent extends Component{
   componentDidMount(){
     const idInPath = this.props.location.pathname;
     const id = idInPath.split('/')[2]; //IS STRING
-    this.props.fetchCurrentStudent(id);
+    this.props.fetchCurrentStudent(id)
   }
 
   render(){
     const student = this.props.currentStudent;
+    const campus = this.props.currentCampus;
 
     return (
       <div>
@@ -26,19 +27,21 @@ class SingleStudent extends Component{
         </div>
         <h3>E-mail</h3><h4>{student.email}</h4>
         <br/>
-        <h3>Campus</h3><h4>el nombre el campussss</h4>
+        <h3>campus</h3><h4>{campus ? campus.name : 'No Campus Assigned'}</h4>
         <br/>
         <h3>GPA</h3><h4>{student.gpa}</h4>
         <br/>
       </div>
     );
   }
-
 }
 
 function mapStateToProps(storeState){
   return {
-    currentStudent: storeState.currentStudent
+    currentStudent: storeState.currentStudent,
+    currentCampus: storeState.campuses.filter( campus => {
+      return campus.id === storeState.currentStudent.campusId
+    })[0]
   };
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 
 class AllCampuses extends Component {
 
@@ -12,11 +12,14 @@ class AllCampuses extends Component {
         <div className="campuses-main">
           {this.props.campuses.map( campus => {
             return (
-              <div
-                key={campus.id}
-                className="campuses-list"
-                style={{backgroundImage: "url("+campus.imageUrl+')'}}>
-                <h2>{campus.name}</h2>
+              <div key={campus.id}>
+                <Link to="/campuses/:campusid">
+                <div
+                  className="campuses-list"
+                  style={{backgroundImage: "url("+campus.imageUrl+')'}}>
+                  <h2>{campus.name}</h2>
+                </div>
+                </Link>
                 <button className="delete-campus-btn">delete campus</button>
               </div>
             );

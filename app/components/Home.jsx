@@ -7,6 +7,7 @@ import AllStudents from './AllStudents';
 import AllCampuses from './AllCampuses';
 import SingleStudent from './SingleStudent';
 import StudentForm from './StudentForm';
+import SingleCampus from './SingleCampus';
 import { fetchStudents, fetchCampuses } from '../store';
 
 
@@ -25,8 +26,9 @@ class Home extends Component{
           <Switch>
             <Route exact path="/students" component={AllStudents} />
             <Route path="/students/student-form" component={StudentForm} />
-            <Route exact path="/campuses" component={AllCampuses} />
             <Route path="/students/:studentsId" component={SingleStudent} />
+            <Route exact path="/campuses" component={AllCampuses} />
+            <Route path="/campuses/:campusId" component={SingleCampus} />
         </Switch>
       </div>
       </div>

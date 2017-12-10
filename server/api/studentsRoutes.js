@@ -10,7 +10,7 @@ studentsRouter.get('/', (req, res, next) => {
 
 studentsRouter.get('/:id', (req, res, next) => {
   const studentId = req.params.id;
-  Students.findById(studentId)
+  Students.findById(studentId, {include:{all:true}})
     .then(student => res.send(student))
     .catch(next);
 });
