@@ -24,9 +24,9 @@ class SingleStudent extends Component{
           <Link to={`/students/${student.id}/update-student`}>
             <button className="delete-student-btn">Edit Student</button>
           </Link>
-          <Link to="/students">
+          {/*<Link to="/students">
             <button className="delete-student-btn" onClick={(event) => this.props.handleDelete(this.props.students, event)}>Delete Student</button>
-          </Link>
+    </Link>*/}
         </div>
         <h3>E-mail</h3><h4>{student.email}</h4>
         <br/>

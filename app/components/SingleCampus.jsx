@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import store, { fetchCurrentCampus } from '../store';
-import AllStudents from './AllStudents'
+import store, { fetchCurrentCampus, removeStudent } from '../store';
 
 class SingleCampus extends Component{
 
   componentDidMount(){
     const idInPath = this.props.location.pathname;
     const id = idInPath.split('/')[2];
-    console.log('ID', id)
     this.props.fetchCurrentCampus(id)
   }
 
@@ -19,25 +17,42 @@ class SingleCampus extends Component{
     const campus = this.props.currentCampus;
 
     return(
-      <div style={{backgroundImage: "url("+campus.imageUrl+')'}}>
-        <h1>{campus.name}</h1>
-        <div>
-          <button>Edit Campus</button>
-          <button>Delete Campus</button>
+      <div style={{backgroundImage: "url("+campus.imageUrl+')'} } >
+        <div className="text-op">
+          <h1>{campus.name}</h1>
+          <div>
+          <Link to={`/campuses/${campus.id}/update-campus`}>
+          <button className="delete-student-btn">Edit Campus</button>
+        </Link>
+            {/*<Link to="/campuses">
+              <button
+                id={campus.id}
+                className="delete-student-btn" onClick={(event) => this.props.handleDeleteCampus(this.props.students, event)}>
+                Delete Campus
+              </button>
+    </Link>*/}
+          </div>
+          <h3>About the campus:</h3>
+          <p>{campus.description}</p>
+          <br/>
+          <h2>Students:</h2>
+          <ul className="students-list">
+            {students.map( student => {
+              return(
+                <li key={student.id} id={student.id}>
+                  <Link to={`/students/${student.id}`}>
+                    {`${student.firstName} ${student.lastName}`}
+                  </Link>
+                <button
+
+                  className="delete-student-btn"
+                  onClick={(event) => this.props.handleDelete(this.props.students, event)}> X
+                </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <h3>About the campus:</h3>
-        <p>{campus.description}</p>
-        <br/>
-        <h2>Students:</h2>
-        <ul className="students-list">
-          {students.map( student => {
-            return(
-              <li key={student.id}>{`${student.firstName} ${student.lastName}`}</li>
-            );
-          })}
-        </ul>
-
-
       </div>
     );
   }
@@ -57,6 +72,17 @@ function mapDispatchToProps(dispatch){
     fetchCurrentCampus: function(id){
       dispatch(fetchCurrentCampus(id));
     },
+
+    handleDelete: function(students, event){
+      const studentId = event.target.parentNode.id;
+      dispatch(removeStudent(students, studentId));
+    },
+
+    handleDeleteCampus: function(campuses, event){
+      // console.log('EVENT',event.target.id)
+      const campusId = event.target.id
+      dispatch(removeCampus(campuses, campusId))
+    }
 
   };
 }

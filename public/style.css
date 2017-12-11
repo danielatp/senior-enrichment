@@ -94,3 +94,17 @@ nav a{
   position: relative;
     top: -50px;
 }
+
+.text-op{
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.form-input{
+  display: block;
+  margin: 20px 10%;
+  width: 80%;
+  background-color: rgba(206, 206, 206, 0);
+  color: white;
+  border: none;
+  border-bottom: 1px solid grey;
+}

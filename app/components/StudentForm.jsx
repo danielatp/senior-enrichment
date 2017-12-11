@@ -32,8 +32,6 @@ class StudentForm extends Component{
       }
     }
 
-
-
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -158,7 +156,6 @@ class StudentForm extends Component{
     }else{
       return (<div>I forgot what I was saying, please start again :((</div>)
     }
-
   }
 }
 

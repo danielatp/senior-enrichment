@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import store, { removeCampus } from '../store';
+
 class AllCampuses extends Component {
 
   render(){
     return (
       <div>
         <h1>Campuses</h1>
-        <button>Create Campus</button>
+        <Link to="/campuses/campus-form">Add Campus</Link>
         <div className="campuses-main">
           {this.props.campuses.map( campus => {
             return (
@@ -20,7 +22,11 @@ class AllCampuses extends Component {
                   <h2>{campus.name}</h2>
                 </div>
                 </Link>
-                <button className="delete-campus-btn">delete campus</button>
+                <button
+                  className="delete-campus-btn"
+                  id={campus.id}
+                  onClick={(event) => this.props.handleDelete(this.props.students, event)}>Delete Campus
+                </button>
               </div>
             );
           })}
@@ -36,6 +42,17 @@ function mapStateToProps(storeState){
   };
 }
 
-const AllCampusesContainer = connect(mapStateToProps)(AllCampuses);
+function mapDispatchToProps(dispatch){
+  return {
+
+    handleDelete: function(campuses, event){
+      console.log('CAMPUS ID', event.target.id)
+      const campusId = event.target.id;
+      dispatch(removeCampus(campuses, campusId));
+    }
+  };
+}
+
+const AllCampusesContainer = connect(mapStateToProps, mapDispatchToProps)(AllCampuses);
 
 export default AllCampusesContainer;
