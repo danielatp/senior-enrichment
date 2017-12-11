@@ -3,20 +3,36 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-import { addStudent } from '../store'
+import { addStudent, updateStudent } from '../store'
 
 class StudentForm extends Component{
 
   constructor(props){
     super(props);
 
-    this.state = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      gpa: '',
-      campus: ''
+    const studentExists = this.props.match.path !== '/students/student-form';
+
+    if(studentExists){
+      const s = this.props.currentStudent
+
+      this.state = {
+        firstName: s.firstName || '',
+        lastName: s.lastName || '',
+        email: s.email || '',
+        gpa: s.gpa || '',
+        campusId: s.campusId || ''
+      }
+    }else{
+      this.state = {
+        firstName: '',
+        lastName: '',
+        email: '',
+        gpa: '',
+        campusId: ''
+      }
     }
+
+
 
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
@@ -24,9 +40,6 @@ class StudentForm extends Component{
     this.handleGpaChange = this.handleGpaChange.bind(this);
     this.handleCampusChange = this.handleCampusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount(){
   }
 
   handleFirstNameChange(event){
@@ -51,90 +64,119 @@ class StudentForm extends Component{
   }
   handleCampusChange(event){
     this.setState({
-      campus: event.target.value.toUpperCase(),
+      campusId: event.target.value,
     })
   }
 
 
   handleSubmit(event){
     event.preventDefault()
+
     const studentData = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
       gpa: this.state.gpa,
-      campus: this.state.campusName
+      campusId: this.state.campusId
     }
-    this.props.addStudent(studentData)
+
+    const studentExists = this.props.match.path !== '/students/student-form';
+
+    if(studentExists){
+      studentData.id =this.props.currentStudent.id
+      this.props.updateStudent(studentData)
+    }else{
+      this.props.addStudent(studentData)
+    }
+
   }
 
 
   render(props){
+    if(this.props.match){
+      return(
+        <div>
+          <h2>Student Info</h2>
+          <form onSubmit = {this.handleSubmit}>
+            <input
+              type="text"
+              placeholder="First Name"
+              className="form-input"
+              onChange={this.handleFirstNameChange}
+              name="firstName"
+              value={this.state.firstName}
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="form-input"
+              onChange={this.handleLastNameChange}
+              name="lastName"
+              value={this.state.lastName}
+            />
+            <input
+              type="email"
+              placeholder="student@email.com"
+              className="form-input"
+              onChange={this.handleEmailChange}
+              name="email"
+              value={this.state.email}
+            />
+            <input
+              type="number"
+              placeholder="GPA"
+              className="form-input"
+              onChange={this.handleGpaChange}
+              name="gpa"
+              value={this.state.gpa}
+            />
+            <select className="form-input" name="campusName" onChange={this.handleCampusChange}>
+              <option default>-campus-</option>
+              {this.props.campuses.map( campus => {
+                return(
+                  <option key={campus.id} value={campus.id}>{campus.name}</option>
+                )
+              })}
+            </select>
+              {this.props.match.path === "/students/student-form"
+                ?
+                <button
+                  type="submit"
+                  className="form-input"
+                  name="add"
+                  value="add">ADD
+                </button>
+                :
+                <button
+                  type="submit" className="form-input"
+                  name="update"
+                  value="update">UPDATE
+                </button>}
+          </form>
+        </div>
+      );
+    }else{
+      return (<div>I forgot what I was saying, please start again :((</div>)
+    }
 
-    return(
-      <div>
-        <h1>Student Form</h1>
-        <form onSubmit = {this.handleSubmit}>
-          <input
-            type="text"
-            placeholder="First Name"
-            className="form-input"
-            onChange={this.handleFirstNameChange}
-            name="firstName"
-            value={this.state.firstName}
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            className="form-input"
-            onChange={this.handleLastNameChange}
-            name="lastName"
-            value={this.state.lastName}
-          />
-          <input
-            type="email"
-            placeholder="student@email.com"
-            className="form-input"
-            onChange={this.handleEmailChange}
-            name="email"
-            value={this.state.email}
-          />
-          <input
-            type="number"
-            placeholder="GPA"
-            className="form-input"
-            onChange={this.handleGpaChange}
-            name="gpa"
-            value={this.state.gpa}
-          />
-          <select className="form-input" name="campusName" onChange={this.handleCampusChange}>
-            <option default>-campus-</option>
-            {this.props.campuses.map( campus => {
-              return(
-                <option key={campus.id}>{campus.name}</option>
-              )
-            })}
-          </select>
-
-            <button type="submit" className="form-input" >add</button>
-
-        </form>
-      </div>
-    );
   }
 }
 
 
-function mapStateToProps(storeState){
+function mapStateToProps(storeState, ownProps){
   return{
     campuses: storeState.campuses,
-    students: storeState.students
+    students: storeState.students,
+    currentStudent: storeState.currentStudent,
+    match: ownProps.match
   }
 }
 
 function mapDispatchToProps(dispatch){
   return {
-    addStudent: (student) => dispatch(addStudent(student))
+    addStudent: (student) => dispatch(addStudent(student)),
+
+    updateStudent: (student) => dispatch(updateStudent(student))
   };
 }
 

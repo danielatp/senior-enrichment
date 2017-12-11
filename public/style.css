@@ -79,7 +79,6 @@ nav a{
 }
 
 .campuses-list{
-  /* border: 1px solid purple; */
   min-width: 250px;
   margin: 2% 0;
   height:250px;
@@ -87,10 +86,11 @@ nav a{
 }
 
 .delete-campus-btn{
-  width: 98%;
+  margin:auto;
+  width: 100%;
   background-color: rgb(92, 10, 10);
   padding: 2px;
   color:white;
   position: relative;
-    top: 190px;
+    top: -50px;
 }

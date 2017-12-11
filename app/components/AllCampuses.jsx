@@ -12,11 +12,11 @@ class AllCampuses extends Component {
         <div className="campuses-main">
           {this.props.campuses.map( campus => {
             return (
-              <div key={campus.id}>
-                <Link to="/campuses/:campusid">
-                <div
-                  className="campuses-list"
-                  style={{backgroundImage: "url("+campus.imageUrl+')'}}>
+              <div key={campus.id}
+                className="campuses-list"
+                style={{backgroundImage: "url("+campus.imageUrl+')'}}>
+                <Link to={`/campuses/${campus.id}`}>
+                <div className="campuses-list">
                   <h2>{campus.name}</h2>
                 </div>
                 </Link>

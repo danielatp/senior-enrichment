@@ -14,7 +14,7 @@ class AllStudents extends Component {
         <ul className="students-list">
           {this.props.students.map( student => {return (
                   <li key={student.id} id={student.id}>
-                    <Link to={'/students/' + student.id}>
+                    <Link to={`/students/${student.id}`}>
                       {student.firstName}
                     </Link>
                     <button

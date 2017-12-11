@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link , Route} from 'react-router-dom';
 
 import store, { fetchCurrentStudent, removeStudent } from '../store';
+import UpdateStudent from './UpdateStudent'
 
 class SingleStudent extends Component{
 
   componentDidMount(){
     const idInPath = this.props.location.pathname;
-    const id = idInPath.split('/')[2]; //IS STRING
+    const id = idInPath.split('/')[2];
     this.props.fetchCurrentStudent(id)
   }
 
@@ -20,14 +21,16 @@ class SingleStudent extends Component{
       <div>
         <h1>{`${student.firstName} ${student.lastName}`}</h1>
         <div>
-          <button className="delete-student-btn">Edit Student</button>
+          <Link to={`/students/${student.id}/update-student`}>
+            <button className="delete-student-btn">Edit Student</button>
+          </Link>
           <Link to="/students">
-          <button className="delete-student-btn" onClick={(event) => this.props.handleDelete(this.props.students, event)}>Delete Student</button>
+            <button className="delete-student-btn" onClick={(event) => this.props.handleDelete(this.props.students, event)}>Delete Student</button>
           </Link>
         </div>
         <h3>E-mail</h3><h4>{student.email}</h4>
         <br/>
-        <h3>campus</h3><h4>{campus ? campus.name : 'No Campus Assigned'}</h4>
+        <h3>Campus</h3><h4>{campus ? campus.name : 'No Campus Assigned'}</h4>
         <br/>
         <h3>GPA</h3><h4>{student.gpa}</h4>
         <br/>

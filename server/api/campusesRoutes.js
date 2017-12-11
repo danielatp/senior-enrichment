@@ -8,10 +8,11 @@ campusesRouter.get('/', (req, res, next) => {
     .catch(next);
 });
 
-campusesRouter.get('./id', (req, res, next) => {
+campusesRouter.get('/:id', (req, res, next) => {
   const campusId = req.params.id;
   Campuses.findById(campusId)
-    .then(campus => res.send(campus))
+    .then(campus => {
+      return res.send(campus)})
     .catch(next)
 }),
 

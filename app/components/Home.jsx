@@ -7,6 +7,7 @@ import AllStudents from './AllStudents';
 import AllCampuses from './AllCampuses';
 import SingleStudent from './SingleStudent';
 import StudentForm from './StudentForm';
+import UpdateStudent from './UpdateStudent';
 import SingleCampus from './SingleCampus';
 import { fetchStudents, fetchCampuses } from '../store';
 
@@ -25,16 +26,26 @@ class Home extends Component{
         <div className="main-view">
           <Switch>
             <Route exact path="/students" component={AllStudents} />
-            <Route path="/students/student-form" component={StudentForm} />
-            <Route path="/students/:studentsId" component={SingleStudent} />
+            <Route exact path="/students/student-form" component={StudentForm} />
+            <Route exact path="/students/:studentsId" component={SingleStudent} />
+            <Route path="/students/:studentsId/update-student" component={UpdateStudent} />
             <Route exact path="/campuses" component={AllCampuses} />
-            <Route path="/campuses/:campusId" component={SingleCampus} />
+            <Route exact path="/campuses/:campusId" component={SingleCampus} />
         </Switch>
       </div>
       </div>
     );
   }
 
+}
+
+
+function maStateToProps(storeState){
+  return {
+    students: storeState.students,
+    campuses: storeState.campuses,
+    currentStudent: storeState.currentStudent
+  };
 }
 
 function mapDispatchToProps(dispatch){
