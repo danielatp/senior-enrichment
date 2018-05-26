@@ -18,13 +18,17 @@ class CampusForm extends Component{
       this.state = {
         name: c.name || '',
         description: c.description || '',
-        imageUrl: c.imageUrl || ''
+        imageUrl: c.imageUrl || '',
+        showMsg:false,
+        msg:''
       }
     }else{
       this.state = {
         name: '',
         description: '',
-        imageUrl: ''
+        imageUrl: '',
+        showMsg:false,
+        msg:''
       }
     }
 
@@ -52,27 +56,31 @@ class CampusForm extends Component{
 
   handleSubmit(event){
     event.preventDefault()
-    console.log('STATE', this.state)
+
     const campusData = {
       name: this.state.name,
       description: this.state.description,
       imageUrl: this.state.imageUrl
     }
-    console.log('campusData', campusData)
 
     const campusExists = this.props.match.path !== '/campuses/campus-form';
 
     if(campusExists){
       campusData.id =this.props.currentCampus.id
-      this.props.updateCampus(campusData)
+      this.props.updateCampus(campusData, this.props.history)
+      this.state.msg = 'Campus updated successfully';
     }else{
-      this.props.addCampus(campusData)
+      this.props.addCampus(campusData, this.props.history)
+      this.state.msg = 'Campus added successfully';
     }
+
+    this.state.showMsg = true;
 
   }
 
 
   render(props){
+    console.log(':::::', this.state)
     if(this.props.match){
       return(
         <div>
@@ -106,17 +114,22 @@ class CampusForm extends Component{
               ?
               <button
                 type="submit"
-                className="form-input"
+                className="form-input form-btn"
                 name="add"
                 value="add">ADD
               </button>
               :
               <button
-                type="submit" className="form-input"
+                type="submit" className="form-input form-btn"
                 name="update"
                 value="update">UPDATE
               </button>}
           </form>
+          {this.state.showMsg ?
+            <div>
+              <p>{this.state.msg}</p>
+            </div>
+            : ''}
         </div>
       );
     }else{
@@ -129,9 +142,8 @@ class CampusForm extends Component{
 function mapStateToProps(storeState, ownProps){
   return{
     campuses: storeState.campuses,
-    // students: storeState.students,
     currentCampus: storeState.currentCampus,
-    match: ownProps.match
+    match: ownProps.match,
   }
 }
 

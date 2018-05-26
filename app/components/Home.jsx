@@ -3,6 +3,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import NavBar from './NavBar';
+import HomeView from './HomeView';
 import AllStudents from './AllStudents';
 import AllCampuses from './AllCampuses';
 import SingleStudent from './SingleStudent';
@@ -27,6 +28,7 @@ class Home extends Component{
         <NavBar />
         <div className="main-view">
           <Switch>
+            <Route exact path="/" component={HomeView} />
             <Route exact path="/students" component={AllStudents} />
             <Route exact path="/students/student-form" component={StudentForm} />
             <Route exact path="/students/:studentsId" component={SingleStudent} />

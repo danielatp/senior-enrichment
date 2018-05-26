@@ -11,7 +11,7 @@ class UpdateStudent extends Component{
 
     return(
       <div>
-        <h1>Update {student.firstName}'s</h1>
+        <h1>Update <Link to={`/students/${student.id}`}>{student.firstName}'s</Link></h1>
         <StudentForm match={this.props.match}/>
       </div>
     )

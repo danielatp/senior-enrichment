@@ -30,7 +30,7 @@ class SingleStudent extends Component{
         </div>
         <h3>E-mail</h3><h4>{student.email}</h4>
         <br/>
-        <h3>Campus</h3><h4>{campus ? campus.name : 'No Campus Assigned'}</h4>
+        <h3>Campus</h3><h4>{campus ?   <Link to={`/campuses/${campus.id}`}>{campus.name}</Link> : 'No Campus Assigned'}</h4>
         <br/>
         <h3>GPA</h3><h4>{student.gpa}</h4>
         <br/>

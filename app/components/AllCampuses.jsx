@@ -16,7 +16,7 @@ class AllCampuses extends Component {
             return (
               <div key={campus.id}
                 className="campuses-list"
-                style={{backgroundImage: "url("+campus.imageUrl+')'}}>
+                style={{backgroundColor: "black", backgroundImage: "url("+campus.imageUrl+')'}}>
                 <Link to={`/campuses/${campus.id}`}>
                 <div className="campuses-list">
                   <h2>{campus.name}</h2>
@@ -46,7 +46,6 @@ function mapDispatchToProps(dispatch){
   return {
 
     handleDelete: function(campuses, event){
-      console.log('CAMPUS ID', event.target.id)
       const campusId = event.target.id;
       dispatch(removeCampus(campuses, campusId));
     }

@@ -8,7 +8,7 @@ const Campuses = db.define('campuses', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: ""
+    defaultValue: "https://boygeniusreport.files.wordpress.com/2017/01/rogueplanet.jpg?quality=98&strip=all&w=782"
   },
   description: {
     type: Sequelize.TEXT

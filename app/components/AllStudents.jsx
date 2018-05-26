@@ -15,7 +15,7 @@ class AllStudents extends Component {
           {this.props.students.map( student => {return (
                   <li key={student.id} id={student.id}>
                     <Link to={`/students/${student.id}`}>
-                      {student.firstName}
+                      {`${student.firstName} ${student.lastName}`}
                     </Link>
                     <button
                       className="delete-student-btn"

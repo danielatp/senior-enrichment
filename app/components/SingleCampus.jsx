@@ -17,7 +17,7 @@ class SingleCampus extends Component{
     const campus = this.props.currentCampus;
 
     return(
-      <div style={{backgroundImage: "url("+campus.imageUrl+')'} } >
+      <div style={{backgroundImage: "url("+campus.imageUrl+')'} } className="single-campus-bg" >
         <div className="text-op">
           <h1>{campus.name}</h1>
           <div>
@@ -30,7 +30,7 @@ class SingleCampus extends Component{
                 className="delete-student-btn" onClick={(event) => this.props.handleDeleteCampus(this.props.students, event)}>
                 Delete Campus
               </button>
-    </Link>*/}
+           </Link>*/}
           </div>
           <h3>About the campus:</h3>
           <p>{campus.description}</p>

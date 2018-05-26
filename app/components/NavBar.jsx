@@ -7,7 +7,7 @@ export default class NavBar extends Component{
   render(){
     return (
       <div>
-        <nav>
+        <nav className="text-op">
           <div className="home"><Link to="/"> HOME </Link></div>
           <div><Link to="/students"> Students </Link></div>
           <div><Link to="/campuses"> Campuses </Link></div>

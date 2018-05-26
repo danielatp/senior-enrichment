@@ -4,11 +4,26 @@
 }
 
 body {
-  background-color:rgb(13, 6, 36);
+  background-color:rgb(7, 3, 23);
   color: white;
   box-sizing: border-box;
   font-family: 'Roboto Mono', monospace;
 }
+
+.home-view{
+  width:100%;
+}
+
+.home-view h1{
+  padding: 20vh 0 5vh 15vh;
+  font-size:3em;
+}
+
+.home-view h2{
+  padding-left: 15vh;
+  font-size:2em;
+}
+
 
 nav {
   font-size:1.5em;
@@ -75,7 +90,7 @@ nav a{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 0 10%;
+  padding: 0 6%;
 }
 
 .campuses-list{
@@ -83,6 +98,11 @@ nav a{
   margin: 2% 0;
   height:250px;
   flex: 0 0 47%;
+  /* background-color: black; */
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  padding: 1%;
 }
 
 .delete-campus-btn{
@@ -95,8 +115,16 @@ nav a{
     top: -50px;
 }
 
+.single-campus-bg{
+  height: 90vh;
+  background-repeat: no-repeat;
+  background-position:center;
+  background-size: contain;
+
+}
+
 .text-op{
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .form-input{
@@ -107,4 +135,22 @@ nav a{
   color: white;
   border: none;
   border-bottom: 1px solid grey;
+  padding: 2px 10px;
+  font-size:1em;
+}
+
+.form-btn{
+  margin-top: 5%;
+  box-shadow: 10px 10px 10px black;
+  background-color:rgb(21, 70, 85);
+  border: 1px solid grey;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+}
+
+a:hover{
+  color:rgb(255, 255, 167);
 }

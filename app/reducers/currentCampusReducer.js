@@ -35,6 +35,7 @@ export const fetchCurrentCampus = (id) => {
       .then( response => response.data)
       .then( (campus) => {
         dispatch(gotCurrentCampus(campus));
+
       })
       .catch(err => {
         console.log('FRIENDLY ERROR: ', err );
@@ -42,7 +43,7 @@ export const fetchCurrentCampus = (id) => {
   };
 };
 
-export const addCampus = (campus) => {
+export const addCampus = (campus, history) => {
   return function(dispatch){
     axios.post('/api/campuses', campus)
       .then(response => {
@@ -56,7 +57,7 @@ export const addCampus = (campus) => {
   }
 }
 
-export const updateCampus = (campus) => {
+export const updateCampus = (campus, history) => {
   return function(dispatch){
     axios.put(`/api/campuses/${campus.id}`, campus)
       .then(response => {

@@ -20,7 +20,9 @@ class StudentForm extends Component{
         lastName: s.lastName || '',
         email: s.email || '',
         gpa: s.gpa || '',
-        campusId: s.campusId || ''
+        campusId: s.campusId || '',
+        showMsg:false,
+        msg:''
       }
     }else{
       this.state = {
@@ -28,7 +30,9 @@ class StudentForm extends Component{
         lastName: '',
         email: '',
         gpa: '',
-        campusId: ''
+        campusId: '',
+        showMsg:false,
+        msg:''
       }
     }
 
@@ -83,10 +87,13 @@ class StudentForm extends Component{
     if(studentExists){
       studentData.id =this.props.currentStudent.id
       this.props.updateStudent(studentData)
+      this.state.msg = 'Student\'s info updated successfully';
     }else{
       this.props.addStudent(studentData)
+      this.state.msg = 'Student added successfully';
     }
 
+    this.state.showMsg = true;
   }
 
 
@@ -135,22 +142,30 @@ class StudentForm extends Component{
                   <option key={campus.id} value={campus.id}>{campus.name}</option>
                 )
               })}
-            </select>
+              </select>
+
               {this.props.match.path === "/students/student-form"
                 ?
                 <button
                   type="submit"
-                  className="form-input"
+                  className="form-input form-btn"
                   name="add"
                   value="add">ADD
                 </button>
                 :
                 <button
-                  type="submit" className="form-input"
+                  type="submit" className="form-input form-btn"
                   name="update"
                   value="update">UPDATE
                 </button>}
+
+
           </form>
+          {this.state.showMsg ?
+            <div>
+              <p>{this.state.msg}</p>
+            </div>
+            : ''}
         </div>
       );
     }else{
